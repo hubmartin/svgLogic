@@ -40,7 +40,7 @@
           
           out.block = new Array();
           
-          for(var i = 0; i &lt; logic.block.length; i++)
+          for(var i = 0; i < logic.block.length; i++)
           	out.block.push({
           	name: logic.block[i].name,
           	pos: logic.readTranslate(logic.block[i])
@@ -98,7 +98,7 @@
 					
 					newWire.remove = function()
 					{
-					    for(var i = 0; i &lt; logic.wire.length; i++)
+					    for(var i = 0; i < logic.wire.length; i++)
 								if(logic.wire[i].wireID == this.wireID)
 								{
 									this.setValue(false);
@@ -144,7 +144,7 @@
         addBlock : function()
         {
         	var newBlock = logic.getAnd();
-        	newBlock.inputUpdate = function() { this.setPin("Q", !(this.getPin("A") &amp; this.getPin("B"))); }
+        	newBlock.inputUpdate = function() { this.setPin("Q", !(this.getPin("A") & this.getPin("B"))); }
         	logic.mySvg.appendChild(newBlock);
         	logic.block.push(newBlock);
         },
@@ -167,7 +167,7 @@
         getD : function()
         {
          	newBlock = logic.svgBlock("D", [["A"], ["Q"]]);
-         	newBlock.inputUpdate = function(pinName, oldVal) {if(this.getPin("A") &amp;&amp; pinName == "A" &amp;&amp; oldVal == false) this.setPin("Q", !this.getPin("Q"));}
+         	newBlock.inputUpdate = function(pinName, oldVal) {if(this.getPin("A") && pinName == "A" && oldVal == false) this.setPin("Q", !this.getPin("Q"));}
          	logic.mySvg.appendChild(newBlock);
         	logic.block.push(newBlock);
         	return newBlock;
@@ -204,8 +204,8 @@
 					logicGroup.setAttribute("transform", "translate(100,"+(blockID*90+50)+")");
 					logicGroup.setAttribute("class", "logicBlock");
           
-          for(var j = 0; j &lt; 2; j++)
-				  for(var i = 0; i &lt; io[j].length; i++)
+          for(var j = 0; j < 2; j++)
+				  for(var i = 0; i < io[j].length; i++)
 				  {
 						var output = document.createElementNS("http://www.w3.org/2000/svg", "line");
 						output.setAttribute("x1", "0");
@@ -247,9 +247,9 @@
 								
 							// Now go throught the wires
 							// Now go through all wires connected to pin
-							for(var i = 0; i &lt; logic.wire.length; i++)
-								if((logic.wire[i].fromBlock.blockID == blockID &amp;&amp; logic.wire[i].fromPin == this.pinNo) ||
-								 (logic.wire[i].toBlock.blockID == blockID &amp;&amp;  logic.wire[i].toPin == this.pinNo))
+							for(var i = 0; i < logic.wire.length; i++)
+								if((logic.wire[i].fromBlock.blockID == blockID && logic.wire[i].fromPin == this.pinNo) ||
+								 (logic.wire[i].toBlock.blockID == blockID &&  logic.wire[i].toPin == this.pinNo))
 									logic.wire[i].setValue(val);
 						}
 						pin.push(output);
@@ -329,7 +329,7 @@
 						document.onmousemove = function(evt)
 						{	
 							that.setAttribute("transform", "translate("+(actPos.x + evt.clientX-clickX)+","+(actPos.y + evt.clientY-clickY)+")");
-							for(var i = 0; i &lt; logic.wire.length; i++)
+							for(var i = 0; i < logic.wire.length; i++)
 							{
 								var w = logic.wire[i];
 							 	if(blockID == w.fromBlock.blockID)
@@ -356,7 +356,7 @@
 					
 					logicGroup.remove = function()
 					{
-					 	for(var i = 0; i &lt; logic.wire.length; i++)
+					 	for(var i = 0; i < logic.wire.length; i++)
 					 	{
 					 		if( logic.wire[i].fromBlock == this.blockID || logic.wire[i].toBlock == this.blockID )
 					 			logic.wire[i].remove();
@@ -379,7 +379,7 @@
 					// Set pin value by it's pin name                 
 					logicGroup.setPin = function(pinName, val)
 					{
-						for(var i = 0; i &lt; pin.length; i++)
+						for(var i = 0; i < pin.length; i++)
 							if(pin[i].pinName == pinName)
 									logicGroup.setPinById(i, val);
 					}
@@ -387,7 +387,7 @@
 					
 					logicGroup.getPin = function(pinName)
 					{
-					  for(var i = 0; i &lt; pin.length; i++)
+					  for(var i = 0; i < pin.length; i++)
 							if(pin[i].pinName == pinName)
 									return pin[i].pinValue;
 					}
