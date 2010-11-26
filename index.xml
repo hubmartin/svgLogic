@@ -7,8 +7,13 @@
     <script src="helper.js"></script>
     
     <link href="style.css" rel="stylesheet" type="text/css"/>
+    <script src="svgLogic.js"></script>
+    
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> test
 	</head>
 	<body>
 	    <div id="svgContainer"></div>
