@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=windows-1250">
+  <meta name="generator" content="PSPad editor, www.pspad.com">
+  <title></title>
+  </head>
+  <body>
+  
+  <script>
+  /* <![CDATA[ */
+   
+
+	 (function(window, undefined)
+	 {
+ 
+    
+
+   
+    var obj = 
+    {
+    	obj : function()
+    	{
+    	 alert("constr.");
+    	},
+    
+     add : function(text)
+		 {
+		 	document.write("Add text: " + text + "<br>");
+		 	this.pole = new Array();
+			this.pole.push(text);
+			this.pole.push(text);	 	
+		 },
+		 
+		 list : function()
+		 {
+			return this.pole;		  		 
+		 }    
+    
+    }
+    
+	obj.add("test");
+	document.write("Size array: " + obj.list().length  + "<br>");
+	    
+  document.write(obj.pole.length);  
+   
+	window.obj = obj; 
+    
+})(window);	  
+
+		
+
+    
+    
+  /* ]]> */
+  </script>
+  
+  
+
+  </body>
+</html>

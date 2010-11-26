@@ -1,0 +1,28 @@
+[Config]
+Relative path=1
+Compilator.SaveAll=0
+Compilator.Capture=0
+Compilator.HideOutput=0
+DefaultCPIndex=4
+LogtoEnd=1
+DontOpen=0
+FileFormat=0
+[Project tree]
+svg_edit
+	+Složka
+		jquery.js
+		index.xml
+		helper.js
+		style.css
+[Open project files]
+0=index.xml
+1=style.css
+[Selected Project Files]
+Main=
+Selected=index.xml
+[index.xml]
+TopLine=87
+Caret=19,117
+[style.css]
+TopLine=29
+Caret=33,60
