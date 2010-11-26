@@ -70,7 +70,11 @@
         addWire : function(fromBlock, fromPin, toBlock, toPin)
         {
 					var newWire = logic.wireConstructor(fromBlock, fromPin, toBlock, toPin)
-					newWire.setValue( fromBlock.pin[fromPin].pinValue || toBlock.pin[toPin].pinValue);
+					
+					if(fromBlock.pin[fromPin].pinValue)
+						newWire.setValue( fromBlock.pin[fromPin].pinValue, "from");
+					if(toBlock.pin[toPin].pinValue)
+						newWire.setValue( toBlock.pin[toPin].pinValue, "to");
 					logic.mySvg.appendChild(newWire);
           logic.wire.push(newWire);
         },
@@ -89,6 +93,7 @@
 					newWire.setAttribute("class", "wire");
 					newWire.wireValue = false;
 					newWire.wireID = wireID;
+					newWire.outputSide = false;
 					
 					
 					newWire.ondblclick = function()
@@ -101,24 +106,33 @@
 					    for(var i = 0; i < logic.wire.length; i++)
 								if(logic.wire[i].wireID == this.wireID)
 								{
-									this.setValue(false);
+								
+									var pin = false;
+									
+									if(this.outputSide == "from")
+										pin = this.toBlock.pin[this.toPin];
+									else if(this.outputSide == "to")
+										pin = this.fromBlock.pin[this.fromPin];
+
 									Dom.remove(this);
-									logic.wire.remove(i);	
+									logic.wire.remove(i);
+									
+									if(pin)	
+										pin.setValue(false);
 								}	
 					}
 					
-					newWire.findSignalSource = function(wire)
-					{
-							
-					}
-					
-					newWire.setValue = function(val)
+
+				
+					newWire.setValue = function(val, outputSide)
 					{
 						// exit if the value is already set, avoid infinite loops
 						if(val == newWire.wireValue)
 							return;
 							
 						newWire.wireValue = val;
+						
+						newWire.outputSide = outputSide;
 						
 						if(val==true) {
 							newWire.setAttribute("style","stroke:red");
@@ -248,9 +262,13 @@
 							// Now go throught the wires
 							// Now go through all wires connected to pin
 							for(var i = 0; i < logic.wire.length; i++)
-								if((logic.wire[i].fromBlock.blockID == blockID && logic.wire[i].fromPin == this.pinNo) ||
-								 (logic.wire[i].toBlock.blockID == blockID &&  logic.wire[i].toPin == this.pinNo))
-									logic.wire[i].setValue(val);
+							{
+								if(logic.wire[i].fromBlock.blockID == blockID && logic.wire[i].fromPin == this.pinNo)
+									logic.wire[i].setValue(val, "from");
+									
+								if(logic.wire[i].toBlock.blockID == blockID && logic.wire[i].toPin == this.pinNo)
+									logic.wire[i].setValue(val, "to");
+							}
 						}
 						pin.push(output);
 						
