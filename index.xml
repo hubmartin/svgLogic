@@ -10,10 +10,7 @@
     <script src="svgLogic.js"></script>
     
 
-<<<<<<< HEAD
 
-=======
->>>>>>> test
 	</head>
 	<body>
 	    <div id="svgContainer"></div>
