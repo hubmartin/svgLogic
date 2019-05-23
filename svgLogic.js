@@ -63,6 +63,8 @@
           logic.mySvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 					logic.mySvg.setAttribute("version", "1.2");
 					logic.mySvg.setAttribute("baseProfile", "tiny");
+					logic.mySvg.setAttribute("width", "100%");
+					logic.mySvg.setAttribute("height", "100%");
 					elm.appendChild(logic.mySvg);
 					return logic.mySvg;
         },
